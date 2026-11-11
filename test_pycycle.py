@@ -9,11 +9,11 @@ def test_get_path_from_package_name():
 
     func = pycycle.utils.get_path_from_package_name
 
-    assert func('/test/one/two', 'some.package') == '/test/one/two/some/package.py'
+    assert os.path.normpath(func('/test/one/two', 'some.package')) == os.path.normpath('/test/one/two/some/package.py')
     assert func('', 'some.package') == ''
     assert func('/', None) == ''
     assert func(None, 'some.package') == ''
-    assert func('/test/', 'some_package') == '/test/some_package.py'
+    assert os.path.normpath(func('/test/', 'some_package')) == os.path.normpath('/test/some_package.py')
 
 
 def test_format_path():
